@@ -138,7 +138,7 @@ export function Header() {
 
             {/* Mobile Hamburger */}
             <button
-              className="md:hidden"
+              className="md:hidden flex flex-col items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Tutup menu" : "Buka menu"}
               aria-expanded={isMobileMenuOpen}
@@ -149,10 +149,6 @@ export function Header() {
                 border: "none",
                 background: isMobileMenuOpen ? "rgba(204,85,0,0.1)" : "transparent",
                 cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
                 gap: 5,
                 transition: "background 0.2s ease",
                 padding: 0,
@@ -197,6 +193,7 @@ export function Header() {
 
         {/* Mobile Dropdown Menu */}
         <div
+          className="md:hidden"
           style={{
             maxHeight: isMobileMenuOpen ? "400px" : "0",
             overflow: "hidden",

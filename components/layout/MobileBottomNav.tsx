@@ -113,7 +113,7 @@ export function MobileBottomNav() {
   return (
     <nav
       id="mobile-bottom-nav"
-      className="md:hidden"
+      className="flex items-center md:hidden"
       aria-label="Navigasi bawah mobile"
       style={{
         position: "fixed",
@@ -124,8 +124,6 @@ export function MobileBottomNav() {
         backgroundColor: "rgba(255,255,255,0.95)",
         backdropFilter: "blur(16px)",
         borderTop: "1px solid rgba(51,51,51,0.08)",
-        display: "flex",
-        alignItems: "center",
         height: "68px",
         padding: "0 0.25rem",
         boxShadow: "0 -4px 20px rgba(0,0,0,0.08)",
