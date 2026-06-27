@@ -9,13 +9,9 @@
 | --- | --- |
 | Nama Project | CATNIP — Website Pet Boarding & Cat Hotel |
 | Mata Kuliah | Artificial Intelligence |
-| Nama Kelompok | `[ISI: Nama Kelompok]` |
-| Anggota & NIM | `[ISI: Nama Anggota 1 - NIM]` `[ISI: Nama Anggota 2 - NIM]` `[ISI: dst.]` |
-| Kelas | `[ISI: Kelas]` |
-| Dosen Pengampu | `[ISI: Nama Dosen]` |
+| Nama Kelompok | Nanti diakhir |
 | Versi Dokumen | 1.0 |
 | Tanggal | 26 Juni 2026 |
-| Dokumen Acuan | `Ketentuan_Website_CATNIP.txt` |
 | Tujuan Dokumen | Menjadi konteks pengembangan bagi AI coding assistant (Antigravity) dalam membangun website CATNIP dari awal hingga MVP siap demo |
 
 > **Catatan untuk AI coding assistant:** Dokumen ini adalah satu-satunya sumber kebenaran (source of truth) untuk scope, desain, dan struktur data proyek. Jika ada instruksi pengembangan yang bertentangan dengan dokumen ini, prioritaskan dokumen ini kecuali ada instruksi eksplisit baru dari pengguna.
@@ -111,7 +107,6 @@ Website harus diuji dan berjalan baik pada kategori device: **Smartphone, Tablet
 | Autentikasi | Laravel Authentication (built-in) |
 | Pembayaran | QRIS & Cash (manual/semi-manual) |
 | Chat | Integrasi WhatsApp (floating button, `wa.me` link) |
-| Deployment | Hosting yang mendukung PHP & MySQL |
 
 ### 3.2 Rekomendasi Stack untuk Tugas Kuliah (Lebih Simpel & Cepat Dibangun)
 
@@ -126,7 +121,6 @@ Karena konteks proyek adalah **tugas kuliah** dengan keterbatasan waktu, menging
 | Autentikasi | **NextAuth.js / Auth.js** (credentials provider: email + password) | Siap pakai, tidak perlu membangun sistem auth dari nol |
 | Pembayaran | **Simulasi QRIS (gambar statis QR) + opsi Cash** | Integrasi payment gateway sungguhan (Midtrans/Xendit) opsional, di luar scope wajib MVP kuliah |
 | Chat | **Floating WhatsApp button** (`wa.me` link, tanpa API berbayar) | Tetap memenuhi ketentuan tanpa kompleksitas integrasi API WhatsApp Business |
-| Deployment | **Vercel** (frontend+backend) dan **Supabase/Neon** (database) | Gratis untuk skala kuliah, auto-deploy dari Git |
 
 ### 3.3 Trade-off Singkat: Stack Asli vs Stack Rekomendasi
 
@@ -136,7 +130,6 @@ Karena konteks proyek adalah **tugas kuliah** dengan keterbatasan waktu, menging
 | Kesesuaian dengan ketentuan dokumen | 100% sesuai literal dokumen | Sedikit menyimpang dari ketentuan teknologi literal, namun tetap memenuhi seluruh requirement fungsional |
 | Dukungan AI coding assistant | Baik, tapi proyek PHP cenderung lebih verbose | Sangat baik — ekosistem JS/TS adalah yang paling banyak dilatih pada AI coding assistant modern |
 | Skill yang dipelajari | PHP, Laravel ecosystem (banyak dipakai industri lokal Indonesia) | JavaScript/TypeScript full-stack (lebih relevan untuk tren global) |
-| Hosting gratis untuk demo kuliah | Lebih terbatas (perlu hosting PHP+MySQL, kadang berbayar) | Sangat mudah & gratis (Vercel + Supabase/Neon) |
 | Risiko untuk deadline tugas | Lebih tinggi (boilerplate Laravel lebih banyak) | Lebih rendah (lebih sedikit boilerplate, iterasi lebih cepat) |
 
 > **Keputusan:** Dokumen ini merekomendasikan **stack Next.js + Tailwind + Prisma + NextAuth** sebagai default untuk pengembangan dengan AI coding assistant, dengan catatan bahwa requirement *fungsional* (bukan teknologi literal) pada Bagian 4–6 tetap menjadi acuan wajib. Jika dosen/penilai mensyaratkan literal Laravel+MySQL, kelompok dapat menyesuaikan kembali ke Bagian 3.1.

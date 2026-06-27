@@ -1,47 +1,36 @@
-# CATNIP — Website Pet Boarding & Cat Hotel
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Website untuk layanan **Pet Boarding & Cat Hotel CATNIP**, dikembangkan sebagai proyek tugas kuliah **Artificial Intelligence** menggunakan pendekatan *vibe coding* dengan AI coding assistant **Antigravity**.
+## Getting Started
 
-## 📋 Dokumentasi Project
+First, run the development server:
 
-Seluruh kebutuhan, desain, struktur halaman, alur pengguna, dan model data terdokumentasi lengkap di:
-
-👉 [`prd.md`](./prd.md) — Product Requirements Document
-
-## 🧑‍🤝‍🧑 Kelompok
-
-| Item | Keterangan |
-| --- | --- |
-| Nama Kelompok | `[ISI: Nama Kelompok]` |
-| Anggota | `[ISI: Nama Anggota - NIM]` |
-| Mata Kuliah | Artificial Intelligence |
-| Kelas | `[ISI: Kelas]` |
-
-## 🛠️ Tech Stack
-
-Lihat detail lengkap dan trade-off pemilihan stack di Bagian 3 `prd.md`. Ringkasan:
-
-- **Frontend:** Next.js (React) + Tailwind CSS
-- **Backend:** Next.js API Routes
-- **Database:** SQLite (dev) / PostgreSQL (production)
-- **ORM:** Prisma
-- **Autentikasi:** NextAuth.js / Auth.js
-- **Deployment:** Vercel
-
-## 🚀 Status Pengembangan
-
-Project ini dalam tahap pengembangan menggunakan alur *vibe coding*:
-
-1. ✅ Planning (PRD)
-2. 🔄 Build dengan Antigravity
-3. ⏳ Review & Iterasi
-4. ⏳ Dokumentasi
-
-## 📂 Struktur Project
-
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-catnip-website/
-├── prd.md          # Acuan utama pengembangan
-├── README.md       # File ini
-└── (kode aplikasi akan ditambahkan oleh Antigravity)
-```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

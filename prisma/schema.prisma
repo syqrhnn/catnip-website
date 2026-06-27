@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+// Role pengguna
+// user  = pelanggan terdaftar
+// admin = staff/pengelola CATNIP
+model User {
+  id                 Int           @id @default(autoincrement())
+  nama               String
+  email              String        @unique
+  no_telepon         String
+  password_hash      String
+  role               String        @default("user") // "user" | "admin"
+  preferensi_bahasa  String        @default("id")
+  dark_mode          Boolean       @default(false)
+  created_at         DateTime      @default(now())
+  updated_at         DateTime      @updatedAt
+
+  // Relations
+  cats               Cat[]
+  bookings           Booking[]
+  testimonials       Testimonial[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────
+// CAT — data kucing milik pengguna
+// ─────────────────────────────────────────────
+model Cat {
+  id               Int       @id @default(autoincrement())
+  user_id          Int
+  nama_kucing      String
+  jenis_kucing     String    // "ras" | "domestik"
+  riwayat_alergi   String?
+  makanan_khusus   String?
+  created_at       DateTime  @default(now())
+
+  // Relations
+  user             User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  bookings         Booking[]
+
+  @@map("cats")
+}
+
+// ─────────────────────────────────────────────
+// ROOM CLASS — kelas kamar penitipan
+// ─────────────────────────────────────────────
+model RoomClass {
+  id                      Int       @id @default(autoincrement())
+  nama_kelas              String
+  deskripsi               String
+  fasilitas               String    // JSON string array, e.g. '["Feeding 3x","Air Bersih"]'
+  harga_ras               Decimal
+  harga_domestik          Decimal
+  status_ketersediaan     String    @default("tersedia") // "tersedia" | "hampir_penuh" | "penuh"
+  jumlah_kamar_tersedia   Int       @default(5)
+  foto_url                String    @default("")
+  created_at              DateTime  @default(now())
+  updated_at              DateTime  @updatedAt
+
+  // Relations
+  bookings                Booking[]
+
+  @@map("room_classes")
+}
+
+// ─────────────────────────────────────────────
+// BOOKING — reservasi penitipan kucing
+// ─────────────────────────────────────────────
+model Booking {
+  id                    Int       @id @default(autoincrement())
+  user_id               Int?      // nullable: guest booking
+  cat_id                Int
+  room_class_id         Int
+  tanggal_checkin       DateTime
+  tanggal_checkout      DateTime
+  logistik              String    // "antar_sendiri" | "jemput"
+  alamat_jemput         String?   // wajib jika logistik = "jemput"
+  metode_pembayaran     String    // "cash" | "qris"
+  bukti_pembayaran_url  String?   // upload bukti QRIS
+  total_biaya           Decimal
+  status_booking        String    @default("menunggu_konfirmasi")
+  // "menunggu_konfirmasi" | "dikonfirmasi" | "ditolak" | "selesai"
+  created_at            DateTime  @default(now())
+  updated_at            DateTime  @updatedAt
+
+  // Relations
+  user                  User?     @relation(fields: [user_id], references: [id], onDelete: SetNull)
+  cat                   Cat       @relation(fields: [cat_id], references: [id], onDelete: Cascade)
+  room_class            RoomClass @relation(fields: [room_class_id], references: [id], onDelete: Restrict)
+
+  @@map("bookings")
+}
+
+// ─────────────────────────────────────────────
+// TESTIMONIAL — ulasan pelanggan
+// ─────────────────────────────────────────────
+model Testimonial {
+  id              Int      @id @default(autoincrement())
+  user_id         Int?     // nullable: testimoni anonim
+  nama_tampilan   String
+  rating          Int      // 1–5
+  komentar        String
+  created_at      DateTime @default(now())
+
+  // Relations
+  user            User?    @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@map("testimonials")
+}
