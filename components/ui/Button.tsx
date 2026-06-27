@@ -3,7 +3,7 @@ import React from "react";
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "white";
 type ButtonSize = "sm" | "md" | "lg";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'target' | 'rel'> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
@@ -11,6 +11,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
   href?: string;
+  target?: string;
+  rel?: string;
   as?: "button" | "a";
 }
 
