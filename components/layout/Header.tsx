@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
   { href: "/",          label: "Beranda" },
@@ -16,6 +17,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -113,9 +115,22 @@ export function Header() {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex" style={{ alignItems: "center", gap: "0.75rem" }}>
-              <Link href="/login" className="btn btn-ghost btn-sm">
-                Masuk
-              </Link>
+              {status === "loading" ? (
+                <div className="w-16 h-8 bg-gray-200 animate-pulse rounded-full"></div>
+              ) : session ? (
+                <>
+                  <Link href="/dashboard" className="text-sm font-semibold text-gray-700 hover:text-[#CC5500]">
+                    Dashboard
+                  </Link>
+                  <button onClick={() => signOut({ callbackUrl: '/' })} className="btn btn-ghost btn-sm">
+                    Keluar
+                  </button>
+                </>
+              ) : (
+                <Link href="/login" className="btn btn-ghost btn-sm">
+                  Masuk
+                </Link>
+              )}
               <Link href="/booking" className="btn btn-primary btn-sm" id="header-booking-cta">
                 Booking Sekarang
               </Link>
@@ -216,6 +231,53 @@ export function Header() {
                   </Link>
                 );
               })}
+              {status === "loading" ? (
+                <div className="h-10 bg-gray-200 animate-pulse rounded-lg mt-2 mb-2"></div>
+              ) : session ? (
+                <>
+                  <Link href="/dashboard" style={{
+                    display: "block",
+                    padding: "0.65rem 1rem",
+                    borderRadius: 10,
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 500,
+                    fontSize: "0.95rem",
+                    color: "#333333",
+                    textDecoration: "none",
+                  }}>
+                    Dashboard
+                  </Link>
+                  <button onClick={() => signOut({ callbackUrl: '/' })} style={{
+                    display: "block",
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "0.65rem 1rem",
+                    borderRadius: 10,
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 500,
+                    fontSize: "0.95rem",
+                    color: "#EF4444",
+                    border: "none",
+                    background: "transparent",
+                    cursor: "pointer",
+                  }}>
+                    Keluar
+                  </button>
+                </>
+              ) : (
+                <Link href="/login" style={{
+                  display: "block",
+                  padding: "0.65rem 1rem",
+                  borderRadius: 10,
+                  fontFamily: "'Poppins', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "0.95rem",
+                  color: "#333333",
+                  textDecoration: "none",
+                }}>
+                  Masuk
+                </Link>
+              )}
               <div style={{ borderTop: "1px solid rgba(51,51,51,0.1)", marginTop: "0.5rem", paddingTop: "0.75rem" }}>
                 <Link href="/booking" className="btn btn-primary w-full" style={{ textAlign: "center" }}>
                   Booking Sekarang

@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -35,11 +36,13 @@ export default function RootLayout({
       className={`${poppins.variable} ${quicksand.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <MobileBottomNav />
-        <FloatingWhatsApp />
+        <NextAuthProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <MobileBottomNav />
+          <FloatingWhatsApp />
+        </NextAuthProvider>
       </body>
     </html>
   );
