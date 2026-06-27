@@ -30,6 +30,10 @@ export function Header() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       <header

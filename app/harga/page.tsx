@@ -23,18 +23,21 @@ export default async function HargaPage() {
 
   return (
     <div>
-      <Section background="charcoal" className="pt-16 pb-20">
-        <Container className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Daftar Harga</h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Harga transparan tanpa biaya tersembunyi. Pilih tarif sesuai dengan jenis kucing Anda.
+      {/* Header — warm gradient */}
+      <section className="relative overflow-hidden pt-20 pb-28" style={{ background: "linear-gradient(135deg, #FFF5E6 0%, #FFE5E5 60%)" }}>
+        <div className="absolute top-0 left-0 -ml-32 -mt-32 w-96 h-96 bg-[#CC5500] opacity-5 rounded-full blur-3xl"></div>
+        <Container className="text-center relative z-10">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-[#333333] text-[#FFF5E6] text-xs font-bold tracking-wider mb-5">DAFTAR HARGA</span>
+          <h1 className="text-3xl md:text-5xl font-bold text-[#333333] mb-4">Harga <span className="text-[#CC5500]">Transparan</span></h1>
+          <p className="text-[#525252] max-w-2xl mx-auto text-lg">
+            Tanpa biaya tersembunyi. Pilih tarif yang sesuai dengan jenis kucing kesayangan Anda.
           </p>
         </Container>
-      </Section>
+      </section>
 
-      <Section background="white">
+      <section className="relative z-10 -mt-16 px-4 md:px-0 mb-20">
         <Container>
-          <div className="bg-white rounded-2xl shadow-soft overflow-hidden mb-12">
+          <div className="bg-white rounded-3xl shadow-soft-xl overflow-hidden border border-gray-100 mb-12">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[600px]">
                 <thead>
@@ -89,21 +92,24 @@ export default async function HargaPage() {
           </div>
 
           {/* Info Tambahan */}
-          <div className="bg-[#FFFDD0] p-6 md:p-8 rounded-2xl border border-[#F5F0B0] flex flex-col md:flex-row gap-6 md:items-center justify-between">
+          <div className="bg-gradient-to-br from-[#FFF5E6] to-[#FDF0E8] p-8 md:p-10 rounded-3xl border border-[#FFE5E5] shadow-sm flex flex-col md:flex-row gap-8 md:items-center justify-between">
             <div>
-              <h3 className="font-bold text-lg mb-2">Punya kebutuhan khusus?</h3>
-              <p className="text-gray-600 text-sm">
-                Harga di atas sudah termasuk pakan reguler. Jika anabul Anda membutuhkan pakan khusus atau perawatan medis ringan (pemberian obat), silakan diskusikan dengan staff kami.
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-8 h-8 rounded-full bg-white text-[#CC5500] flex items-center justify-center font-bold shadow-sm">!</span>
+                <h3 className="font-bold text-xl text-[#333333]">Punya kebutuhan khusus?</h3>
+              </div>
+              <p className="text-[#525252] leading-relaxed max-w-2xl">
+                Harga di atas sudah termasuk pakan reguler. Jika anabul Anda membutuhkan pakan khusus atau perawatan medis ringan (pemberian obat), silakan diskusikan dengan staff kami terlebih dahulu.
               </p>
             </div>
             <div className="shrink-0">
-              <Button href="https://wa.me/6281234567890" variant="outline" as="a" target="_blank" rel="noopener noreferrer">
-                Hubungi Kami
+              <Button href="https://wa.me/6281234567890" variant="primary" as="a" target="_blank" rel="noopener noreferrer" className="shadow-primary">
+                Hubungi Kami via WA
               </Button>
             </div>
           </div>
         </Container>
-      </Section>
+      </section>
     </div>
   );
 }

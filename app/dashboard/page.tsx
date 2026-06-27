@@ -46,10 +46,10 @@ export default async function DashboardPage() {
   const activeBookings = user.bookings;
 
   return (
-    <Section background="cream" className="min-h-[80vh] py-12">
+    <div className="min-h-screen py-12" style={{ background: "linear-gradient(135deg, #FFF5E6 0%, #FFE5E5 100%)" }}>
       <Container>
-        <div className="bg-white p-8 rounded-2xl shadow-soft">
-          <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-6">
+        <div className="bg-white p-8 md:p-10 rounded-3xl shadow-soft-xl border border-gray-100">
+          <div className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-8">
             <div>
               <h1 className="text-3xl font-bold text-[#333333] mb-2">
                 Halo, <span className="text-[#CC5500]">{user.nama}</span>! 👋
@@ -190,6 +190,6 @@ export default async function DashboardPage() {
           </div>
         </div>
       </Container>
-    </Section>
+    </div>
   );
 }

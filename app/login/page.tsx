@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Container, { Section } from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
@@ -60,10 +61,10 @@ function LoginForm() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-soft">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-[#CC5500] mb-2">Masuk</h1>
-        <p className="text-gray-500 text-sm">Masuk ke akun CATNIP Anda.</p>
+    <div className="w-full">
+      <div className="text-center md:text-left mb-8">
+        <h1 className="text-3xl font-bold text-[#333333] mb-2">Selamat Datang Kembali</h1>
+        <p className="text-[#525252] text-sm">Masuk ke akun CATNIP Anda untuk mengelola penitipan.</p>
       </div>
 
       {successMsg && (
@@ -100,9 +101,9 @@ function LoginForm() {
         </div>
       </form>
 
-      <div className="mt-6 text-center text-sm text-gray-600">
+      <div className="mt-6 text-center md:text-left text-sm text-[#525252]">
         Belum punya akun?{" "}
-        <Link href="/register" className="font-bold text-[#CC5500] hover:underline">
+        <Link href="/register" className="font-bold text-[#CC5500] hover:text-[#A84400] transition-colors">
           Daftar sekarang
         </Link>
       </div>
@@ -112,12 +113,32 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Section background="cream" className="min-h-[80vh] flex items-center justify-center py-12">
-      <Container className="max-w-md w-full">
-        <Suspense fallback={<div className="bg-white p-8 rounded-2xl shadow-soft text-center py-20">Loading...</div>}>
-          <LoginForm />
-        </Suspense>
+    <div className="min-h-[85vh] flex items-center justify-center py-12 px-4" style={{ background: "linear-gradient(135deg, #FFF5E6 0%, #FFE5E5 100%)" }}>
+      <Container className="max-w-5xl">
+        <div className="bg-white rounded-3xl shadow-soft-xl overflow-hidden flex flex-col md:flex-row border border-[#FDF0E8]">
+          {/* Left Side: Decoration */}
+          <div className="hidden md:flex md:w-1/2 bg-[#FDF0E8] items-center justify-center p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#CC5500]/10 rounded-full blur-2xl transform -translate-x-1/4 translate-y-1/4"></div>
+            <div className="relative w-full aspect-square z-10">
+              <Image 
+                src="/login-cat.png" 
+                alt="CATNIP Login Decoration"
+                fill
+                className="object-contain mix-blend-multiply"
+                priority
+              />
+            </div>
+          </div>
+          
+          {/* Right Side: Form */}
+          <div className="w-full md:w-1/2 p-8 md:p-12 lg:p-16 flex items-center justify-center">
+            <Suspense fallback={<div className="text-center py-20 animate-pulse text-[#CC5500] font-bold">Memuat...</div>}>
+              <LoginForm />
+            </Suspense>
+          </div>
+        </div>
       </Container>
-    </Section>
+    </div>
   );
 }

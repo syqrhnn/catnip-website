@@ -36,24 +36,28 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div>
-      <Section background="charcoal" className="pt-16 pb-20">
-        <Container className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">FAQ</h1>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Pertanyaan yang sering diajukan seputar layanan penitipan kucing kami.
+      {/* Header — warm gradient */}
+      <section className="relative overflow-hidden pt-20 pb-28" style={{ background: "linear-gradient(135deg, #FFF5E6 0%, #FFE5E5 60%)" }}>
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 bg-[#CC5500] opacity-5 rounded-full blur-3xl"></div>
+        <Container className="text-center relative z-10">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-[#333333] text-[#FFF5E6] text-xs font-bold tracking-wider mb-5">FAQ</span>
+          <h1 className="text-3xl md:text-5xl font-bold text-[#333333] mb-4">Pertanyaan <span className="text-[#CC5500]">Umum</span></h1>
+          <p className="text-[#525252] max-w-2xl mx-auto text-lg">
+            Temukan jawaban untuk pertanyaan yang sering diajukan seputar layanan penitipan kucing kami.
           </p>
         </Container>
-      </Section>
+      </section>
 
-      <Section background="white" className="min-h-[50vh]">
+      <section className="relative z-10 -mt-16 px-4 md:px-0 mb-20 min-h-[50vh]">
         <Container className="max-w-3xl">
-          <div className="space-y-4">
+          <div className="bg-white rounded-3xl shadow-soft-xl p-6 md:p-10 border border-gray-100">
+            <div className="space-y-4">
             {faqs.map((faq, index) => (
               <details
                 key={index}
                 className="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex items-center justify-between gap-4 p-5 font-bold cursor-pointer text-gray-800 hover:bg-gray-50 transition-colors">
+                <summary className="flex items-center justify-between gap-4 p-5 md:p-6 font-bold cursor-pointer text-[#333333] hover:bg-[#FDF0E8]/50 transition-colors">
                   <span className="text-lg">{faq.question}</span>
                   <span className="shrink-0 transition-transform duration-300 group-open:-rotate-180 bg-[#FDF0E8] text-[#CC5500] w-8 h-8 rounded-full flex items-center justify-center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -61,25 +65,27 @@ export default function FAQPage() {
                     </svg>
                   </span>
                 </summary>
-                <div className="p-5 pt-0 text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
-                  <div className="mt-4">{faq.answer}</div>
+                <div className="p-5 md:p-6 pt-0 text-[#525252] leading-relaxed bg-white">
+                  <div className="mt-2">{faq.answer}</div>
                 </div>
               </details>
             ))}
           </div>
 
-          <div className="mt-12 text-center p-6 bg-[#FDF0E8] rounded-2xl">
-            <p className="text-gray-700 font-medium mb-3">Tidak menemukan jawaban yang Anda cari?</p>
-            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold text-[#CC5500] hover:text-[#A84400] transition-colors">
-              Chat kami via WhatsApp
+          </div>
+
+          <div className="mt-12 text-center p-8 bg-gradient-to-br from-[#FFF5E6] to-[#FDF0E8] rounded-3xl border border-[#FFE5E5] shadow-sm">
+            <p className="text-[#333333] font-bold text-lg mb-2">Tidak menemukan jawaban yang Anda cari?</p>
+            <p className="text-[#525252] mb-6">Staff kami siap membantu menjawab pertanyaan Anda.</p>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold bg-[#CC5500] text-white px-6 py-3 rounded-xl hover:bg-[#A84400] transition-colors shadow-primary">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.36 2 2 0 012.88 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/>
               </svg>
+              Chat kami via WhatsApp
             </a>
           </div>
         </Container>
-      </Section>
+      </section>
     </div>
   );
 }

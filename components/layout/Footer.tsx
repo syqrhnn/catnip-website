@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const footerLinks = {
   layanan: [
@@ -22,145 +23,65 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
 
+  // Hide footer on dashboard and admin pages for a cleaner app-like experience
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/dashboard") || pathname?.startsWith("/profil") || pathname?.startsWith("/riwayat-booking")) {
+    return null;
+  }
+
   return (
-    <footer
-      id="footer"
-      aria-label="Footer CATNIP"
-      style={{
-        backgroundColor: "#333333",
-        color: "#FFFDD0",
-        paddingTop: "3.5rem",
-        paddingBottom: "2rem",
-      }}
-    >
+    <footer className="bg-[#333333] text-[#FFFDD0] pt-16 pb-8 border-t-[8px] border-[#CC5500]">
       <div className="container-catnip">
-        {/* Top: Logo + Nav */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: "2.5rem",
-            marginBottom: "3rem",
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+          
           {/* Brand Column */}
-          <div style={{ gridColumn: "1 / -1", maxWidth: 320 }}>
-            <Link
-              href="/"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                textDecoration: "none",
-                marginBottom: "1rem",
-              }}
-            >
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  backgroundColor: "#CC5500",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="CATNIP">
+          <div className="lg:col-span-2 max-w-sm">
+            <Link href="/" className="inline-flex items-center gap-3 mb-4 group">
+              <div className="w-10 h-10 rounded-full bg-[#CC5500] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="CATNIP">
                   <path d="M12 2C7 2 4 6 4 10c0 5 3 8 8 10 5-2 8-5 8-10 0-4-3-8-8-8z" fill="white" opacity="0.9"/>
                   <path d="M4 10L2 4l4 3M20 10l2-6-4 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" fill="white"/>
                 </svg>
               </div>
-              <span
-                style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontWeight: 800,
-                  fontSize: "1.35rem",
-                  color: "#CC5500",
-                }}
-              >
+              <span className="font-bold text-2xl text-white tracking-tight">
                 CATNIP
               </span>
             </Link>
-            <p
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "0.88rem",
-                lineHeight: 1.7,
-                color: "#FFFDD0CC",
-                marginBottom: "1.25rem",
-              }}
-            >
-              Pet Boarding &amp; Cat Hotel terpercaya untuk kucing kesayangan Anda.
-              Penitipan nyaman, bersih, dan penuh kasih sayang dengan staff berpengalaman.
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Pet Boarding & Cat Hotel terpercaya untuk kucing kesayangan Anda. Penitipan nyaman, bersih, dan penuh kasih sayang dengan pengawasan profesional.
             </p>
-            {/* Contact info */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC5500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            
+            <div className="space-y-3">
+              <a href="https://wa.me/6281234567890" className="flex items-center gap-3 text-sm text-gray-300 hover:text-[#CC5500] transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.36 2 2 0 012.88 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/>
                 </svg>
-                <a
-                  href="https://wa.me/6281234567890"
-                  style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.85rem", color: "#FFFDD0CC", textDecoration: "none" }}
-                >
-                  +62 812-3456-7890
-                </a>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC5500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
+                +62 812-3456-7890
+              </a>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
-                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.85rem", color: "#FFFDD0CC" }}>
-                  Jl. Contoh No. 123, Kota, Indonesia
-                </span>
+                Jl. Contoh No. 123, Kota, Indonesia
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC5500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                 </svg>
-                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.85rem", color: "#FFFDD0CC" }}>
-                  Senin – Minggu: 08.00 – 20.00 WIB
-                </span>
+                Senin – Minggu: 08.00 – 20.00 WIB
               </div>
             </div>
           </div>
 
-          {/* Layanan */}
+          {/* Links Columns */}
           <div>
-            <h3
-              style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                color: "#FFFDD0",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: "1rem",
-              }}
-            >
-              Layanan
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+            <h3 className="font-bold text-white uppercase tracking-wider text-sm mb-5">Layanan</h3>
+            <ul className="space-y-3">
               {footerLinks.layanan.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: "0.875rem",
-                      color: "#FFFDD0CC",
-                      textDecoration: "none",
-                      transition: "color 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#CC5500")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#FFFDD0CC")}
-                  >
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-[#CC5500] hover:translate-x-1 inline-block transition-all">
                     {link.label}
                   </Link>
                 </li>
@@ -168,35 +89,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Perusahaan */}
           <div>
-            <h3
-              style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                color: "#FFFDD0",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: "1rem",
-              }}
-            >
-              Perusahaan
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+            <h3 className="font-bold text-white uppercase tracking-wider text-sm mb-5">Perusahaan</h3>
+            <ul className="space-y-3">
               {footerLinks.perusahaan.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: "0.875rem",
-                      color: "#FFFDD0CC",
-                      textDecoration: "none",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#CC5500")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#FFFDD0CC")}
-                  >
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-[#CC5500] hover:translate-x-1 inline-block transition-all">
                     {link.label}
                   </Link>
                 </li>
@@ -204,35 +102,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Akun */}
           <div>
-            <h3
-              style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                color: "#FFFDD0",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                marginBottom: "1rem",
-              }}
-            >
-              Akun
-            </h3>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+            <h3 className="font-bold text-white uppercase tracking-wider text-sm mb-5">Akun</h3>
+            <ul className="space-y-3">
               {footerLinks.akun.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    style={{
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: "0.875rem",
-                      color: "#FFFDD0CC",
-                      textDecoration: "none",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#CC5500")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#FFFDD0CC")}
-                  >
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-[#CC5500] hover:translate-x-1 inline-block transition-all">
                     {link.label}
                   </Link>
                 </li>
@@ -241,45 +116,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div
-          style={{
-            height: 1,
-            background: "rgba(255,253,208,0.12)",
-            marginBottom: "1.5rem",
-          }}
-        />
+        <div className="h-px bg-white/10 mb-6"></div>
 
-        {/* Bottom: Copyright */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "0.5rem",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "0.8rem",
-              color: "#FFFDD099",
-              margin: 0,
-            }}
-          >
-            © {currentYear} CATNIP Pet Boarding &amp; Cat Hotel. All rights reserved.
-          </p>
-          <p
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "0.8rem",
-              color: "#FFFDD099",
-              margin: 0,
-            }}
-          >
-            Dibuat dengan ❤️ untuk para pecinta kucing
-          </p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+          <p>© {currentYear} CATNIP Pet Boarding & Cat Hotel. All rights reserved.</p>
+          <p>Dibuat dengan ❤️ untuk para pecinta kucing</p>
         </div>
       </div>
     </footer>

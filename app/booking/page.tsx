@@ -157,11 +157,13 @@ export default function BookingPage() {
   const totalBiaya = calculateTotal();
 
   return (
-    <Section background="white" className="min-h-screen py-12">
-      <Container className="max-w-2xl">
-        <div className="bg-white p-8 rounded-2xl shadow-soft border border-gray-100">
-          <h1 className="text-2xl font-bold text-[#CC5500] mb-2">Form Booking</h1>
-          <p className="mb-6 text-sm" style={{ color: "#525252" }}>Lengkapi data di bawah ini untuk reservasi penitipan.</p>
+    <div className="min-h-screen py-20" style={{ background: "linear-gradient(135deg, #FFF5E6 0%, #FFE5E5 100%)" }}>
+      <Container className="max-w-3xl relative z-10">
+        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-soft-xl border border-gray-100">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-[#333333] mb-2">Form <span className="text-[#CC5500]">Booking</span></h1>
+            <p className="text-gray-500">Lengkapi data di bawah ini untuk reservasi penitipan.</p>
+          </div>
 
           {/* Stepper Indicator */}
           <div className="flex items-center justify-between mb-8">
@@ -367,6 +369,6 @@ export default function BookingPage() {
           </form>
         </div>
       </Container>
-    </Section>
+    </div>
   );
 }
