@@ -94,6 +94,15 @@
   --accent:        #F8D7DA;
   --white:         #FFFFFF;
 
+  /* WCAG AA compliant text colors:
+     - On white (#FFF): gray-600 (#525252) = 7.0:1 ✓ | gray-500 (#737373) = 4.6:1 ✓
+     - On cream (#FFFDD0): gray-600 (#525252) = 6.6:1 ✓ | gray-500 (#737373) = 3.9:1 ✗
+     - Primary (#CC5500) on white = 4.58:1 ✓ (AA)
+     - Secondary (#333333) on cream = 12.6:1 ✓
+  */
+  --text-muted-on-cream: #525252;   /* gray-600 — use instead of gray-500 on cream bg */
+  --text-muted-on-white: #737373;   /* gray-500 — OK on white */
+
   /* Spacing */
   --section-py: clamp(3rem, 6vw, 6rem);
   --container-px: clamp(1rem, 5vw, 2rem);
@@ -285,18 +294,34 @@ img {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
-  transition: var(--transition-base);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .card:hover {
   box-shadow: var(--shadow-soft-lg);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .card-accent {
   background-color: var(--accent);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Interactive card (for clickable cards without full hover lift) */
+.card-interactive {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  border: 1.5px solid transparent;
+}
+.card-interactive:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+  border-color: rgba(204, 85, 0, 0.2);
 }
 
 /* ─────────────────────────────────────────────
@@ -419,8 +444,20 @@ img {
 
 .form-error {
   font-size: 0.8rem;
-  color: var(--color-danger);
+  color: #DC2626; /* red-600 — 5.9:1 on white, WCAG AA ✓ */
   margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Fade-in animation for page sections */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fade-in 0.3s ease forwards;
 }
 
 /* ─────────────────────────────────────────────

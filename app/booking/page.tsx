@@ -157,11 +157,11 @@ export default function BookingPage() {
   const totalBiaya = calculateTotal();
 
   return (
-    <Section background="cream" className="min-h-screen py-12">
+    <Section background="white" className="min-h-screen py-12">
       <Container className="max-w-2xl">
-        <div className="bg-white p-8 rounded-2xl shadow-soft">
+        <div className="bg-white p-8 rounded-2xl shadow-soft border border-gray-100">
           <h1 className="text-2xl font-bold text-[#CC5500] mb-2">Form Booking</h1>
-          <p className="text-gray-500 text-sm mb-6">Lengkapi data di bawah ini untuk reservasi penitipan.</p>
+          <p className="mb-6 text-sm" style={{ color: "#525252" }}>Lengkapi data di bawah ini untuk reservasi penitipan.</p>
 
           {/* Stepper Indicator */}
           <div className="flex items-center justify-between mb-8">

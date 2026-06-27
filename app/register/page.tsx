@@ -10,6 +10,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   
   const [formData, setFormData] = useState({
     nama: "",
@@ -27,16 +28,21 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setFieldErrors({});
 
-    // Validation
-    if (formData.password !== formData.confirmPassword) {
-      setError("Konfirmasi password tidak cocok.");
-      setLoading(false);
-      return;
-    }
+    // Inline field-level validation
+    const newFieldErrors: Record<string, string> = {};
+    if (!formData.nama.trim()) newFieldErrors.nama = "Nama lengkap wajib diisi.";
+    if (!formData.no_telepon.trim()) newFieldErrors.no_telepon = "Nomor telepon wajib diisi.";
+    else if (!/^[0-9+\-\s]{8,15}$/.test(formData.no_telepon)) newFieldErrors.no_telepon = "Format nomor telepon tidak valid (contoh: 08123456789).";
+    if (!formData.email.trim()) newFieldErrors.email = "Email wajib diisi.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newFieldErrors.email = "Format email tidak valid.";
+    if (formData.password.length < 8) newFieldErrors.password = "Password minimal 8 karakter.";
+    if (!formData.confirmPassword) newFieldErrors.confirmPassword = "Konfirmasi password wajib diisi.";
+    else if (formData.password !== formData.confirmPassword) newFieldErrors.confirmPassword = "Konfirmasi password tidak cocok.";
 
-    if (formData.password.length < 8) {
-      setError("Password minimal 8 karakter.");
+    if (Object.keys(newFieldErrors).length > 0) {
+      setFieldErrors(newFieldErrors);
       setLoading(false);
       return;
     }
@@ -76,7 +82,7 @@ export default function RegisterPage() {
         <div className="bg-white p-8 rounded-2xl shadow-soft">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-[#CC5500] mb-2">Daftar Akun</h1>
-            <p className="text-gray-500 text-sm">Bergabung dengan CATNIP untuk kemudahan booking.</p>
+        <p className="text-sm mb-8" style={{ color: "#525252" }}>Bergabung dengan CATNIP untuk kemudahan booking.</p>
           </div>
 
           {error && (
@@ -90,29 +96,34 @@ export default function RegisterPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="nama" className="form-label">Nama Lengkap</label>
-              <input type="text" id="nama" className="form-input" required value={formData.nama} onChange={handleChange} />
+              <label htmlFor="nama" className="form-label">Nama Lengkap <span className="text-red-500">*</span></label>
+              <input type="text" id="nama" className={`form-input ${fieldErrors.nama ? 'error' : ''}`} required value={formData.nama} onChange={handleChange} />
+              {fieldErrors.nama && <p className="form-error">⚠ {fieldErrors.nama}</p>}
             </div>
 
             <div>
-              <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" id="email" className="form-input" required value={formData.email} onChange={handleChange} />
+              <label htmlFor="email" className="form-label">Email <span className="text-red-500">*</span></label>
+              <input type="email" id="email" className={`form-input ${fieldErrors.email ? 'error' : ''}`} required value={formData.email} onChange={handleChange} />
+              {fieldErrors.email && <p className="form-error">⚠ {fieldErrors.email}</p>}
             </div>
 
             <div>
-              <label htmlFor="no_telepon" className="form-label">Nomor Telepon (Opsional)</label>
-              <input type="tel" id="no_telepon" className="form-input" value={formData.no_telepon} onChange={handleChange} />
+              <label htmlFor="no_telepon" className="form-label">Nomor WhatsApp <span className="text-red-500">*</span></label>
+              <input type="tel" id="no_telepon" className={`form-input ${fieldErrors.no_telepon ? 'error' : ''}`} required value={formData.no_telepon} onChange={handleChange} placeholder="08123456789" />
+              {fieldErrors.no_telepon && <p className="form-error">⚠ {fieldErrors.no_telepon}</p>}
             </div>
 
             <div>
-              <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" id="password" className="form-input" required minLength={8} value={formData.password} onChange={handleChange} />
-              <p className="text-xs text-gray-500 mt-1">Minimal 8 karakter.</p>
+              <label htmlFor="password" className="form-label">Password <span className="text-red-500">*</span></label>
+              <input type="password" id="password" className={`form-input ${fieldErrors.password ? 'error' : ''}`} required minLength={8} value={formData.password} onChange={handleChange} />
+              <p className="text-xs mt-1" style={{ color: "#525252" }}>Minimal 8 karakter.</p>
+              {fieldErrors.password && <p className="form-error">⚠ {fieldErrors.password}</p>}
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="form-label">Konfirmasi Password</label>
-              <input type="password" id="confirmPassword" className="form-input" required value={formData.confirmPassword} onChange={handleChange} />
+              <label htmlFor="confirmPassword" className="form-label">Konfirmasi Password <span className="text-red-500">*</span></label>
+              <input type="password" id="confirmPassword" className={`form-input ${fieldErrors.confirmPassword ? 'error' : ''}`} required value={formData.confirmPassword} onChange={handleChange} />
+              {fieldErrors.confirmPassword && <p className="form-error">⚠ {fieldErrors.confirmPassword}</p>}
             </div>
 
             <div className="pt-2">
