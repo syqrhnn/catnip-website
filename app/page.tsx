@@ -67,14 +67,12 @@ export default async function Home() {
             </div>
             
             <div className="flex-1 relative flex justify-center w-full max-w-md md:max-w-none animate-in">
-              <div className="relative w-full aspect-square md:aspect-auto md:h-[500px]">
-                {/* Decorative blob under image */}
-                <div className="absolute inset-4 bg-white/60 rounded-full blur-2xl transform scale-90"></div>
+              <div className="relative w-full aspect-[3/4] md:h-[550px] max-w-md mx-auto">
                 <Image 
-                  src="/hero-cat.png" 
-                  alt="Ilustrasi Kucing Calico" 
+                  src="/hero-facility.png" 
+                  alt="Interior Fasilitas CATNIP" 
                   fill
-                  className="object-contain drop-shadow-2xl z-10 mix-blend-multiply"
+                  className="object-cover rounded-[2rem] shadow-2xl z-10 border-4 border-white/50"
                   priority
                 />
               </div>

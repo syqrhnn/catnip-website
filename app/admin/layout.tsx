@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -17,45 +18,26 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-64 bg-[#333333] text-white hidden md:flex flex-col">
-        <div className="p-6 border-b border-gray-700">
-          <Link href="/" className="text-2xl font-bold tracking-tight text-white hover:text-gray-200">
-            CATNIP <span className="text-[#CC5500] text-sm align-top ml-1">ADMIN</span>
-          </Link>
-        </div>
-        
-        <nav className="flex-1 p-4 space-y-2">
-          <Link href="/admin" className="block px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-            Overview
-          </Link>
-          <Link href="/admin/bookings" className="block px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-            Kelola Booking
-          </Link>
-          <Link href="/admin/rooms" className="block px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-            Kelola Kamar & Harga
-          </Link>
-        </nav>
-        
-        <div className="p-4 border-t border-gray-700 text-sm text-gray-400">
-          <div>Login sebagai:</div>
-          <div className="font-bold text-white truncate">{session.user.name}</div>
-        </div>
-      </aside>
+    <div className="flex min-h-screen bg-[#F9F9F9] font-sans text-gray-800">
+      {/* Sidebar Wrapper */}
+      <div className="hidden md:block z-20 sticky top-0 h-screen">
+        <AdminSidebar userName={session.user.name || "Admin"} />
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 md:p-10 overflow-auto">
-        {/* Mobile Header */}
-        <div className="md:hidden flex justify-between items-center bg-[#333333] text-white p-4 rounded-xl mb-6">
-          <span className="font-bold">CATNIP ADMIN</span>
-          <div className="flex gap-4 text-sm">
-            <Link href="/admin/bookings">Booking</Link>
-            <Link href="/admin/rooms">Kamar</Link>
+      <main className="flex-1 px-8 py-10 z-10 w-full min-h-screen overflow-x-hidden">
+        {/* Mobile Header (Glassmorphic) */}
+        <div className="md:hidden flex justify-between items-center bg-white/80 backdrop-blur-xl border border-white/50 shadow-sm text-gray-800 p-5 rounded-[1.5rem] mb-8">
+          <span className="font-extrabold tracking-tight text-xl">CATNIP <span className="text-[#CC5500] text-sm">ADMIN</span></span>
+          <div className="flex gap-4 text-sm font-semibold">
+            <Link href="/admin/bookings" className="hover:text-[#CC5500]">Booking</Link>
+            <Link href="/admin/rooms" className="hover:text-[#CC5500]">Kamar</Link>
           </div>
         </div>
 
-        {children}
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
+          {children}
+        </div>
       </main>
     </div>
   );

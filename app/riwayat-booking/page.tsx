@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 import Container, { Section } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Riwayat Booking | CATNIP",
@@ -50,6 +51,7 @@ export default async function RiwayatBookingPage() {
               <h1 className="text-2xl font-bold text-[#333333] mb-1">Riwayat Booking</h1>
               <p className="text-sm text-gray-500">Daftar semua transaksi penitipan kucing Anda.</p>
             </div>
+            <Button href="/dashboard" variant="outline" size="sm">Kembali ke Dashboard</Button>
           </div>
 
           {bookings.length > 0 ? (

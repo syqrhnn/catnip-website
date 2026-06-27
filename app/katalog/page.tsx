@@ -75,10 +75,7 @@ export default async function KatalogPage() {
                       sizes="(max-width: 768px) 100vw, 33vw"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4">
-                      <h2 className="font-bold text-2xl text-white drop-shadow-md">{rc.nama_kelas}</h2>
-                    </div>
+                    {/* Status Badge */}
                     <span className={`absolute top-4 right-4 badge ${
                       rc.status_ketersediaan === 'tersedia' ? 'badge-available' :
                       rc.status_ketersediaan === 'hampir_penuh' ? 'badge-almost-full' : 'badge-full'
@@ -88,6 +85,7 @@ export default async function KatalogPage() {
                     </span>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
+                    <h2 className="font-bold text-2xl text-[#333333] mb-3">{rc.nama_kelas}</h2>
                     <p className="text-sm text-[#525252] mb-5">{rc.deskripsi}</p>
                     
                     <div className="mb-5">
