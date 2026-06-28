@@ -8,11 +8,9 @@ Website layanan **Pet Boarding & Cat Hotel CATNIP**, dikembangkan sebagai proyek
 
 | Item | Keterangan |
 | --- | --- |
-| Nama Kelompok | `[ISI: Nama Kelompok]` |
-| Anggota & NIM | `[ISI: Nama Anggota - NIM]` |
+| Nama Kelompok | Kelompok CATNIP |
 | Mata Kuliah | Artificial Intelligence |
-| Kelas | `[ISI: Kelas]` |
-| Dosen Pengampu | `[ISI: Nama Dosen]` |
+| Dosen Pengampu | Jemiro Kasih, S.T., M.M.S.I. |
 
 ---
 
