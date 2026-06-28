@@ -91,7 +91,7 @@ export default function KontakPage() {
                         </svg>
                       ),
                       title: "Alamat",
-                      text: "Jl. Contoh No. 123, Kel. Suka Kucing, Kec. Meow, Kota Fiktif, Indonesia 12345",
+                      text: "Jl. Dummy Address No. 00, Kota Fiktif, Indonesia 12345",
                     },
                     {
                       icon: (
@@ -100,7 +100,7 @@ export default function KontakPage() {
                         </svg>
                       ),
                       title: "Telepon / WhatsApp",
-                      text: "+62 812-3456-7890",
+                      text: "+62 8XX-XXXX-XXXX",
                     },
                     {
                       icon: (
@@ -109,7 +109,7 @@ export default function KontakPage() {
                         </svg>
                       ),
                       title: "Email",
-                      text: "halo@catnip.com",
+                      text: "dummy@email.com",
                     },
                     {
                       icon: (

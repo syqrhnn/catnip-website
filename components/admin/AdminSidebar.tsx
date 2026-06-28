@@ -46,8 +46,16 @@ export function AdminSidebar({ userName }: { userName: string }) {
       <div className="p-8 pb-4 relative z-10 flex items-center gap-3">
         <Link href="/" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#D95B18] shadow-sm shrink-0">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="CATNIP">
-            <path d="M12 2C7 2 4 6 4 10c0 5 3 8 8 10 5-2 8-5 8-10 0-4-3-8-8-8z" fill="white" opacity="0.95"/>
-            <path d="M4 10L2 4l4 3M20 10l2-6-4 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" fill="white"/>
+            <path d="M4 11L2 3l7 4M20 11l2-8-7 4" fill="white" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M2 13C2 6.5 22 6.5 22 13C22 19.5 17 22.5 12 22.5C7 22.5 2 19.5 2 13Z" fill="white"/>
+            <ellipse cx="6" cy="15" rx="2" ry="1" fill="#FF94A2" opacity="0.8"/>
+            <ellipse cx="18" cy="15" rx="2" ry="1" fill="#FF94A2" opacity="0.8"/>
+            <circle cx="8" cy="13.5" r="2.2" fill="#CC5500"/>
+            <circle cx="16" cy="13.5" r="2.2" fill="#CC5500"/>
+            <circle cx="7.2" cy="12.5" r="0.7" fill="white"/>
+            <circle cx="15.2" cy="12.5" r="0.7" fill="white"/>
+            <path d="M10.5 16.5c.5.5 1 .7 1.5 0 .5.7 1 .5 1.5 0" stroke="#CC5500" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            <circle cx="12" cy="15.2" r="0.6" fill="#CC5500"/>
           </svg>
         </Link>
         <div className="flex flex-col">

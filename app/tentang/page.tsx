@@ -54,6 +54,14 @@ export default function TentangPage() {
                 <p className="text-[#525252] leading-relaxed">
                   Dengan pengawasan staff profesional, kebersihan yang terjaga ketat, serta asupan nutrisi yang tepat, kami berkomitmen untuk memberikan pengalaman menginap terbaik—layaknya di rumah sendiri.
                 </p>
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <div className="inline-flex items-center gap-2 bg-[#FFF5E6] px-4 py-2 rounded-full border border-[#FFE5D4]">
+                    <span className="w-2 h-2 rounded-full bg-[#CC5500] animate-pulse"></span>
+                    <p className="text-sm font-bold text-[#CC5500]">
+                      Project by: Kelompok CATNIP
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

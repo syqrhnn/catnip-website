@@ -185,7 +185,7 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimoni) => (
-              <Card key={testimoni.id} variant="accent" padding="md">
+              <Card key={testimoni.id} variant="flat" padding="md" className="border-[#FFE5D4] bg-gradient-to-br from-white to-[#FFF5E6] hover:border-[#CC5500]/30 hover:shadow-soft-xl">
                 <CardBody>
                   <div className="flex gap-1 mb-4 text-[#F59E0B]">
                     {[...Array(testimoni.rating)].map((_, i) => (
